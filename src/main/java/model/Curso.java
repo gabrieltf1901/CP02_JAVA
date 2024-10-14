@@ -2,8 +2,7 @@ package model;
 
 import jakarta.persistence.*;
 
-//@Entity
-//@Table(name = "Curso_CP2JAVA")
+@Entity
 public class Curso {
 
     @Id

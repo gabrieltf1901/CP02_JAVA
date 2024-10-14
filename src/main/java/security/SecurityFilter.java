@@ -19,18 +19,18 @@ public class SecurityFilter extends OncePerRequestFilter{
     @Autowired
     private TokenService tokenService;
     @Autowired
-    private UserRepository usuarioRepository;
+    private UserRepository userRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         var token = this.recoverToken(request);
         if (token != null) {
             var login = tokenService.validateToken(token);
-            UserDetails usuario = UserRepository.findByLogin(login);
+            UserDetails user = UserRepository.findByLogin(login);
             var authentication = new UsernamePasswordAuthenticationToken(
-                    usuario,
+                    user,
                     null,
-                    usuario.getAuthorities()
+                    user.getAuthorities()
             );
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }

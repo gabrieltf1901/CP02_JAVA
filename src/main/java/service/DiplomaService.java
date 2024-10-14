@@ -16,7 +16,6 @@ public class DiplomaService {
     @Autowired
     private DiplomaRepository diplomaRepository;
 
-    // Método para buscar o diploma e gerar o texto
     public String gerarTextoDiploma(UUID diplomaId) {
         Optional<Diploma> diplomaOpt = diplomaRepository.findById(diplomaId);
         if (!diplomaOpt.isPresent()) {
@@ -26,7 +25,6 @@ public class DiplomaService {
         Diploma diploma = diplomaOpt.get();
         DiplomaDTO diplomaDTO = mapToDTO(diploma);
 
-        // Geração do texto
         return String.format(
                 "O %s, %s da Universidade Fake, no uso de suas atribuições, confere a %s, de nacionalidade %s, " +
                         "natural de %s, portador do rg %s, o presente diploma de %s, do curso de %s, por ter concluído " +
@@ -43,7 +41,6 @@ public class DiplomaService {
         );
     }
 
-    // Método auxiliar para mapear um Diploma para o DTO
     private DiplomaDTO mapToDTO(Diploma diploma) {
         DiplomaDTO diplomaDTO = new DiplomaDTO();
 
@@ -56,12 +53,16 @@ public class DiplomaService {
         diplomaDTO.setTipoCurso(diploma.getCurso().getTipo().name());
         diplomaDTO.setDataConclusao(diploma.getDataConclusao());
 
-        // Gerar o título do reitor com base no sexo
-        String tituloReitor = (diploma.getSexoReitor() == Sexo.M ? "Prof. Dr." : "Profa. Dra.") + " " + diploma.getNomeReitor();
+
+        String tituloReitor = (diploma.getSexoReitor() == Sexo.M ? "Prof." : "Dr.") + " " + diploma.getNomeReitor();
+        diplomaDTO.setTituloReitor(tituloReitor);
+        String tituloReitora = (diploma.getSexoReitor() == Sexo.F ? "Profa." : "Dra.") + " " + diploma.getNomeReitor();
         diplomaDTO.setTituloReitor(tituloReitor);
 
-        // Definir o cargo do reitor com base no sexo
-        String cargoReitor = (diploma.getSexoReitor() == Sexo.M ? "reitor" : "reitora");
+
+        String cargoReitor = (diploma.getSexoReitor() == Sexo.M ? "reitor" : "Caro reitor");
+        diplomaDTO.setCargoReitor(cargoReitor);
+        String cargoReitora = (diploma.getSexoReitor() == Sexo.F ? "reitora" : "Cara reitora");
         diplomaDTO.setCargoReitor(cargoReitor);
 
         return diplomaDTO;

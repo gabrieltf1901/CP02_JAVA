@@ -5,8 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
-//@Entity
-//@Table(name = "Diploma_CP2JAVA")
+@Entity
 public class Diploma {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

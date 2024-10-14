@@ -2,8 +2,7 @@ package model;
 
 import jakarta.persistence.*;
 
-//@Entity
-//@Table(name = "Diplomados_CP2JAVA")
+@Entity
 public class Diplomado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

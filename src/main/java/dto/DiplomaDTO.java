@@ -1,22 +1,34 @@
 package dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
 public class DiplomaDTO {
-
+    @NotNull
     private UUID id;
+    @NotBlank
     private String nomeDiplomado;
+    @NotBlank
     private String nacionalidadeDiplomado;
+    @NotBlank
     private String naturalidadeDiplomado;
+    @NotBlank
     private String rgDiplomado;
+    @NotBlank
     private String nomeCurso;
+    @NotBlank
     private String tipoCurso;
+    @NotBlank
     private LocalDate dataConclusao;
+    @NotNull
     private String tituloReitor;
+    @NotBlank
     private String cargoReitor;
 
-    // Getters e Setters
+
 
     public UUID getId() {
         return id;
