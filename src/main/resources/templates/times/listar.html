@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="#{times.listagem}">Listagem de Times</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body class="d-flex flex-column min-vh-100">
+<div th:replace="fragments/header :: header"></div>
+
+<main class="flex-fill container mt-4">
+    <h1 th:text="#{times.listagem}">Listagem de Times</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Cidade</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="time : ${times}">
+            <td th:text="${time.id}"></td>
+            <td th:text="${time.nome}"></td>
+            <td th:text="${time.cidade}"></td>
+            <td>
+                <a class="btn btn-sm btn-primary" th:href="@{|/times/editar/${time.id}|}" th:text="#{times.editar}">Editar</a>
+                <a class="btn btn-sm btn-danger" th:href="@{|/times/excluir/${time.id}|}" th:text="#{times.excluir}">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-success" th:href="@{/times/cadastrar}" th:text="#{times.cadastrar}">Cadastrar Novo Time</a>
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

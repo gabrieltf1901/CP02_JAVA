@@ -1,0 +1,22 @@
+
+body {
+    background-color: #f8f9fa;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+
+h1, h2, h3 {
+    color: #343a40;
+}
+
+
+.container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+

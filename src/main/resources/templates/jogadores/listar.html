@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="#{jogadores.listagem}">Listagem de Jogadores</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body class="d-flex flex-column min-vh-100">
+<div th:replace="fragments/header :: header"></div>
+
+<main class="flex-fill container mt-4">
+    <h1 th:text="#{jogadores.listagem}">Listagem de Jogadores</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th th:text="#{jogador.nome}">Nome</th>
+            <th th:text="#{jogador.posicao}">Posição</th>
+            <th th:text="#{jogador.idade}">Idade</th>
+            <th th:text="#{jogador.time}">Time</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="jogador : ${jogadores}">
+            <td th:text="${jogador.id}"></td>
+            <td th:text="${jogador.nome}"></td>
+            <td th:text="${jogador.posicao}"></td>
+            <td th:text="${jogador.idade}"></td>
+            <td th:text="${jogador.time != null ? jogador.time.nome : 'N/A'}"></td>
+            <td>
+                <a class="btn btn-sm btn-primary" th:href="@{|/jogadores/editar/${jogador.id}|}" th:text="#{jogadores.editar}">Editar</a>
+                <a class="btn btn-sm btn-danger" th:href="@{|/jogadores/excluir/${jogador.id}|}" th:text="#{jogadores.excluir}">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-success" th:href="@{/jogadores/cadastrar}" th:text="#{jogadores.cadastrar}">Cadastrar Novo Jogador</a>
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
