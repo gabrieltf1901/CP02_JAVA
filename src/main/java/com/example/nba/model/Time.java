@@ -16,7 +16,7 @@ public class Time {
     @NotEmpty(message = "{time.cidade.obrigatorio}")
     private String cidade;
 
-    // Construtores, getters e setters
+
 
     public Time() { }
 

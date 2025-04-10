@@ -24,7 +24,7 @@ public class Jogador {
     @JoinColumn(name = "time_id")
     private Time time;
 
-    // Construtores, getters e setters
+
 
     public Jogador() { }
 
